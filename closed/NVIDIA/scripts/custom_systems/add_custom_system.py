@@ -205,7 +205,7 @@ def generate_config(benchmark, scenario, system):
                         continue
                     field = field_dict[field_name]
                     default_value = field.value_type()  # Use default constructor
-                    lines.append(f"    {field_name}: {field.value_type.__name__} = {repr(default_value)}\n")
+                    lines.append(f"#    {field_name}: {field.value_type.__name__} = {repr(default_value)}\n")
 
             lines.append("\n")
             lines.append("    # Applicable fields for this benchmark are listed below. Not all of these are necessary, and some may be defined in the BaseConfig already and inherited.\n")

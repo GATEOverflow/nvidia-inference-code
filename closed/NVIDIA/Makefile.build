@@ -29,7 +29,7 @@ endif
 
 # Set the include directory for Loadgen header files
 INFERENCE_DIR = $(BUILD_DIR)/inference
-INFERENCE_URL = https://github.com/mlcommons/inference.git
+INFERENCE_URL = https://github.com/ctuning/inference.git
 LOADGEN_INCLUDE_DIR ?= $(INFERENCE_DIR)/loadgen
 LOADGEN_LIB_DIR ?= $(LOADGEN_INCLUDE_DIR)/build
 INFERENCE_HASH = 76d8687238fc299741ffccfc8ef9d24b860f6ad9
@@ -187,13 +187,12 @@ endif
 clone_loadgen:
 	@if [ ! -d $(LOADGEN_INCLUDE_DIR) ]; then \
 		echo "Cloning Official MLPerf Inference (For Loadgen Files)" \
-			&& git clone $(INFERENCE_URL) $(INFERENCE_DIR); \
+			&& git clone $(INFERENCE_URL) $(INFERENCE_DIR) --depth 5; \
 	fi
 	@echo "Updating Loadgen" \
 		&& cd $(INFERENCE_DIR) \
 		&& git fetch \
 		&& git checkout $(INFERENCE_HASH) \
-		&& git submodule update --init tools/submission/power-dev \
 		&& git submodule update --init third_party/pybind \
 		&& git submodule update --init language/bert/DeepLearningExamples \
 		&& git submodule update --init vision/medical_imaging/3d-unet-brats19/nnUnet
