@@ -142,10 +142,16 @@ class RunHarnessHandler(GenerateConfFilesHandler):
                 md.update(result_data)
         else:
             md = result_data
-        with open(summary_file, "w") as f:
-            json.dump(md, f, indent=4, sort_keys=True)
+
+        if not os.environ.get('MLPERF_LOADGEN_LOGS_DIR'):
+            with open(summary_file, "w") as f:
+                json.dump(md, f, indent=4, sort_keys=True)
 
     def report_stats(self):
+
+        if os.environ.get('MLPERF_LOADGEN_LOGS_DIR'):
+            return
+
         print(f"\n{'=' * 24} Extra Perf Stats: {'=' * 24}\n")
         print(f"{self.benchmark_conf['config_name']}-{self.benchmark_conf['config_ver']}:")
 

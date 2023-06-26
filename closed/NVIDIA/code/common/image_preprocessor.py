@@ -18,10 +18,8 @@ import math
 import os
 import shutil
 
-from code.common.fix_sys_path import ScopedRestrictedImport
-with ScopedRestrictedImport():
-    import numpy as np
-    import cv2
+import numpy as np
+import cv2
 
 from code.common import logging
 
