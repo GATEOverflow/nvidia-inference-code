@@ -121,8 +121,6 @@ def generate_user_conf(user_conf_path, scenario, flag_dict):
             value = flag_dict[param]
             if param_name in parameter_scaling_map:
                 value = value * parameter_scaling_map[param_name]
-            if 'expected_qps' in param_name or 'expected_latency' in param_name or 'server_target_qps' in param_name:
-                f.write("*.{:}.{:} = {:}\n".format(scenario.valstr(), param_name, value))
             #f.write("*.{:}.{:} = {:}\n".format(scenario.valstr(), param_name, value))
             flag_dict[param] = None
 
