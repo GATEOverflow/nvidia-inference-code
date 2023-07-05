@@ -232,7 +232,7 @@ class RetinanetGraphSurgeon(object):
                 for t_idx, out_tensor in enumerate(node.outputs):
                     if not out_tensor.name or node.name not in out_tensor.name:
                         logging.debug("Naming tensor: {} -- {}_out_{}".format(node.name, node.name, t_idx))
-                        out_tensor.name = "{}_out_{}".format(node.name, t_idx)
+                        #out_tensor.name = "{}_out_{}".format(node.name, t_idx)
                 # Rename the constant scale/bias tensor.
                 if 'scale' in node.name or 'bias' in node.name:
                     for input_tensor in node.inputs:
