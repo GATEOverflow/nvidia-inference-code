@@ -32,7 +32,7 @@ INFERENCE_DIR = $(BUILD_DIR)/inference
 INFERENCE_URL = https://github.com/ctuning/inference.git
 LOADGEN_INCLUDE_DIR ?= $(INFERENCE_DIR)/loadgen
 LOADGEN_LIB_DIR ?= $(LOADGEN_INCLUDE_DIR)/build
-INFERENCE_HASH = 76d8687238fc299741ffccfc8ef9d24b860f6ad9
+INFERENCE_HASH = f7df3acb6880b6b3a92cd5a444d173137aa5d8ca
 
 # Set Environment variables to extracted contents
 export LD_LIBRARY_PATH := $(LD_LIBRARY_PATH):/usr/local/cuda/lib64:/usr/lib/$(ARCH)-linux-gnu:$(LOADGEN_LIB_DIR)
