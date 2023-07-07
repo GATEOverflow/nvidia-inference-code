@@ -245,7 +245,7 @@ class FilterbankFeatures(nn.Module):
         window_tensor = window_fn(self.win_length,
                                   periodic=False) if window_fn else None
         filterbanks = torch.tensor(
-            librosa.filters.mel(sample_rate, self.n_fft, n_mels=nfilt, fmin=lowfreq,
+            librosa.filters.mel(sr=sample_rate, n_fft=self.n_fft, n_mels=nfilt, fmin=lowfreq,
                                 fmax=highfreq), dtype=torch.float).unsqueeze(0)
         # self.fb = filterbanks
         # self.window = window_tensor
@@ -286,7 +286,7 @@ class FilterbankFeatures(nn.Module):
         # do stft
         x = torch.stft(x, n_fft=self.n_fft, hop_length=self.hop_length,
                        win_length=self.win_length,
-                       center=True, window=self.window.to(dtype=torch.float))
+                       center=True, window=self.window.to(dtype=torch.float), return_complex=False)
 
         # get power spectrum
         x = x.pow(2).sum(-1)
