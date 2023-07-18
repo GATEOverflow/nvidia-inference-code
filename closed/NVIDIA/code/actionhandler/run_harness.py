@@ -136,7 +136,7 @@ class RunHarnessHandler(GenerateConfFilesHandler):
             append (bool): If True, adds result_data to the existing metadata (if any). (Default: False)
         """
         summary_file = os.path.join(self.harness.get_full_log_dir(), HARNESS_METADATA_FILE)
-        if append:
+        if append and os.path.exists(summary_file):
             with open(summary_file, 'r') as f:
                 md = json.load(f)
                 md.update(result_data)
