@@ -232,7 +232,7 @@ class RetinanetGraphSurgeon(object):
                 for t_idx, out_tensor in enumerate(node.outputs):
                     if not out_tensor.name or node.name not in out_tensor.name:
                         logging.debug("Naming tensor: {} -- {}_out_{}".format(node.name, node.name, t_idx))
-                        #out_tensor.name = "{}_out_{}".format(node.name, t_idx)
+                        out_tensor.name = "{}_out_{}".format(node.name, t_idx)
                 # Rename the constant scale/bias tensor.
                 if 'scale' in node.name or 'bias' in node.name:
                     for input_tensor in node.inputs:
@@ -372,8 +372,17 @@ class RetinanetGraphSurgeon(object):
 
         # Feature size from small to large
         feature_map_sizes = [100, 50, 25, 13, 7]
-        conv_loc_outputs = [tensors[f"regression_head_{size}x{size}"]
-                            for size in feature_map_sizes]
+        keys = [
+        '/head/regression_head/bbox_reg/Conv_out_0',
+        '/head/regression_head/bbox_reg_1/Conv_out_0',
+        '/head/regression_head/bbox_reg_2/Conv_out_0',
+        '/head/regression_head/bbox_reg_3/Conv_out_0',
+        '/head/regression_head/bbox_reg_4/Conv_out_0'
+        ]
+        #conv_loc_outputs = [tensors[f"regression_head_{size}x{size}"]
+        #                    for size in feature_map_sizes]
+        conv_loc_outputs = [tensors[keys[i]]
+                            for i in [0,1,2,3,4]]
         conv_conf_outputs = [tensors[f"classification_head_{size}x{size}"]
                              for size in feature_map_sizes]
 
