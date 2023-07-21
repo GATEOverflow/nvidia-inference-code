@@ -379,9 +379,11 @@ class RetinanetGraphSurgeon(object):
         '/head/regression_head/bbox_reg_3/Conv_out_0',
         '/head/regression_head/bbox_reg_4/Conv_out_0'
         ]
-        #conv_loc_outputs = [tensors[f"regression_head_{size}x{size}"]
-        #                    for size in feature_map_sizes]
-        conv_loc_outputs = [tensors[keys[i]]
+        if "regression_head_100x100" in tensors:
+            conv_loc_outputs = [tensors[f"regression_head_{size}x{size}"]
+                            for size in feature_map_sizes]
+        else:
+            conv_loc_outputs = [tensors[keys[i]]
                             for i in [0,1,2,3,4]]
         conv_conf_outputs = [tensors[f"classification_head_{size}x{size}"]
                              for size in feature_map_sizes]
