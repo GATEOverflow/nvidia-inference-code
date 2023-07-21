@@ -215,6 +215,8 @@ class RunHarnessHandler(GenerateConfFilesHandler):
         # TODO: Communicate with @garvitk on how to handle this better. Currently, this is necessary because CI/CD
         # parses this to retrieve metadata about the run.
         for key, value in self.benchmark_conf.items():
+            if key in self.harness_flag_dict and "conf_path" in key:
+                self.harness_flag_dict[key] = value # No way to figure out who is modifying harness_flag_dict. So, this hack
             print(f"{key} : {value}")
 
         try:
