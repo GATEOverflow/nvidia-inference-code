@@ -32,8 +32,9 @@ class SingleStreamGPUBaseConfig(GPUBaseConfig):
     dali_batches_issue_ahead = 1
     dali_pipeline_depth = 1
     use_graphs = True
-    disable_encoder_plugin = True
+    disable_encoder_plugin = False
     nobatch_sorting = True
+    audio_buffer_num_lines = 1
     num_warmups = 32
 
 
