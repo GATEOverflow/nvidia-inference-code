@@ -756,8 +756,8 @@ class Orin(OfflineGPUBaseConfig):
     dla_inference_streams = 1
     dla_core = 0
     gpu_batch_size = 256
-    input_format = 'chw4'
-    tensor_path = 'build/preprocessed_data/imagenet/ResNet50/int8_chw4/'
+    input_format = 'linear'
+    tensor_path = 'build/preprocessed_data/imagenet/ResNet50/int8_linear/'
 
 
 @ConfigRegistry.register(HarnessType.Triton, AccuracyTarget.k_99, PowerSetting.MaxP)
